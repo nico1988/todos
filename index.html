@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template • TodoMVC</title>
+    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+    <!-- CSS overrides - remove if you don't need it -->
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body ng-app="todos" ng-controller="todosController">
+    <section class="todoapp">
+        <header class="header">
+            <form ng-submit="add()">
+                <h1>要做的事</h1>
+                <input ng-model="newtask" class="new-todo" placeholder="What needs to be done?" autofocus>
+            </form>
+        </header>
+        <!-- This section should be hidden by default and shown when there are todos -->
+        <section class="main">
+            <input class="toggle-all" type="checkbox" checked ng-model="isSelected" ng-click="toggleAll()">
+            <label for="toggle-all">Mark all as complete</label>
+            <ul class="todo-list">
+                <!-- These are here just to show the structure of the list items -->
+                <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+                <!--ng-class的值为true，相关的样式就会变成true-->
+                <li ng-class="{'completed':item.completed,'editing':isEditingId==item.id}" ng-repeat="item in tasks | filter:isCompleted">
+                    <div class="view ">
+                        <input ng-model=item.completed class="toggle " type="checkbox">
+                        <label ng-dblclick="edit(item.id)">{{item.name}}</label>
+                        <button ng-click="remove(item.id)" class="destroy "></button>
+                    </div>
+                    <form ng-submit="save()">
+                        <input ng-model="item.name" class="edit " value="Create a TodoMVC template ">
+                    </form>
+                </li>
+            </ul>
+        </section>
+        <!-- This footer should hidden by default and shown when there are todos -->
+        <footer class="footer ">
+            <!-- This should be `0 items left` by default -->
+            <span class="todo-count "><strong ng-bind = "count"></strong> item left</span>
+            <!-- Remove this if you don't implement routing -->
+            <ul class="filters ">
+                <li>
+                    <a ng-click="all()" ng-class="{'selected':isCompleted.completed==undefined}" href="#/all">All</a>
+                </li>
+                <li>
+                    <a ng-click="active()" ng-class="{'selected':isCompleted.completed==false}" href="#/active">Active</a>
+                </li>
+                <li>
+                    <a ng-click="completed()" ng-class="{'selected':isCompleted.completed==true}" href="#/completed">Completed</a>
+                </li>
+            </ul>
+            <!-- Hidden if no completed items are left ↓ -->
+            <button class="clear-completed " ng-show="isShow()" ng-click="clearCompleted()">Clear completed</button>
+        </footer>
+    </section>
+    <footer class="info ">
+        <p>Double-click to edit a todo</p>
+        <!-- Remove the below line ↓ -->
+        <p>Template by <a href="http://sindresorhus.com ">Sindre Sorhus</a></p>
+        <!-- Change this out with your name and url ↓ -->
+        <p>Created by <a href="http://todomvc.com ">you</a></p>
+        <p>Part of <a href="http://todomvc.com ">TodoMVC</a></p>
+    </footer>
+    <!-- Scripts here. Don't remove ↓ -->
+    <script src="./node_modules/angular/angular.js "></script>
+    <script src="js/app.js "></script>-->
+    <script src="js/controller.js"></script>
+    <script src="js/service.js"></script>
+</body>
+
+</html>
